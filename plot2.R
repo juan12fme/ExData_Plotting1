@@ -11,9 +11,7 @@ SubHPCdata[1:1440,"Time"] <- format(SubHPCdata[1:1440,"Time"],"2007-02-01 %H:%M:
 SubHPCdata[1441:2880,"Time"] <- format(SubHPCdata[1441:2880,"Time"],"2007-02-02 %H:%M:%S")
 
 
-# calling the basic plot function
+# plotting
 plot(SubHPCdata$Time,as.numeric(as.character(SubHPCdata$Global_active_power)),type="l",xlab="",ylab="Global Active Power (kilowatts)") 
-
-# annotating graph
 title(main="Global Active Power Vs Time")
 
