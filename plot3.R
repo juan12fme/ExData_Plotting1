@@ -1,6 +1,6 @@
 # Reading data
 HPCdata <- read.table("household_power_consumption.txt",skip=1,sep=";")
-#naming the columns and subsetting
+#naming columns and subsetting
 names(HPCdata) <- c("Date","Time","Global_active_power","Global_reactive_power","Voltage","Global_intensity","Sub_metering_1","Sub_metering_2","Sub_metering_3")
 SubHPCdata <- subset(HPCdata,HPCdata$Date=="1/2/2007" | HPCdata$Date =="2/2/2007")
 
@@ -12,6 +12,10 @@ SubHPCdata[1441:2880,"Time"] <- format(SubHPCdata[1441:2880,"Time"],"2007-02-02 
 
 
 # plotting
-plot(SubHPCdata$Time,as.numeric(as.character(SubHPCdata$Global_active_power)),type="l",xlab="",ylab="Global Active Power (kilowatts)") 
-title(main="Global Active Power Vs Time")
+plot(SubHPCdata$Time,SubHPCdata$Sub_metering_1,type="n",xlab="",ylab="Energy sub metering")
+with(SubHPCdata,lines(Time,as.numeric(as.character(Sub_metering_1))))
+with(SubHPCdata,lines(Time,as.numeric(as.character(Sub_metering_2)),col="red"))
+with(SubHPCdata,lines(Time,as.numeric(as.character(Sub_metering_3)),col="blue"))
+legend("topright", lty=1, col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+title(main="Energy sub-metering")
 
